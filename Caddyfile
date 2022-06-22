@@ -1,7 +1,7 @@
 {
     local_certs
     auto_https disable_redirects
-    debug
+    
 }
 
 (corsify) {
@@ -17,13 +17,31 @@
 
 }
 
+:4001 {
+    import corsify
+    reverse_proxy daemon_synapse:8008
+}
+
+:4000 {
+    import corsify
+    reverse_proxy daemon_proxy:4000
+}
+
 http:// {
     @options {
         method OPTIONS
     }
 
     @daemon_synapse {
+        header X-Intercepted-Subdomain localhost
+    }
+
+    @daemon_synapse2 {
         header X-Intercepted-Subdomain synapse
+    }
+
+    @daemon_synapse1 {
+        header X-Intercepted-Subdomain 192.168.50.148
     }
 
     handle @options {
@@ -32,6 +50,14 @@ http:// {
     }
 
     handle @daemon_synapse {
+        reverse_proxy daemon_synapse:8008
+    }
+
+    handle @daemon_synapse1 {
+        reverse_proxy daemon_synapse:8008
+    }
+
+    handle @daemon_synapse2 {
         reverse_proxy daemon_synapse:8008
     }
 

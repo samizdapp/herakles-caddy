@@ -1,7 +1,7 @@
 {
     local_certs
     auto_https disable_redirects
-    
+    debug
 }
 
 (corsify) {
@@ -25,6 +25,14 @@
 :4000 {
     import corsify
     reverse_proxy localhost:8004
+}
+
+https://test.5e2a4aa8da440cfb1937acfbf7386e30285bc6538ba3e41c460cb0e74f1b7ec.6.yg:8448 {
+    reverse_proxy localhost:8008
+}
+
+https://test.0e0521cfe768b2c17dbc2394e66020299334e7a10e51887471157421dde361e.0.yg:8448 {
+    reverse_proxy localhost:8008
 }
 
 http:// {

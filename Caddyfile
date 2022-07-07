@@ -27,12 +27,20 @@
     reverse_proxy localhost:8004
 }
 
-https://test.5e2a4aa8da440cfb1937acfbf7386e30285bc6538ba3e41c460cb0e74f1b7ec.6.yg:8448 {
+https://test.d4cd4a8973bc662e298cd6dca00c72833e532b79f94e437f42c8adbe5b14706.0.yg:8448 {
     reverse_proxy localhost:8008
 }
 
-https://test.0e0521cfe768b2c17dbc2394e66020299334e7a10e51887471157421dde361e.0.yg:8448 {
+https://test.288c82f139343fa425568bcc0181b4a2738c0979c561ae27f4e14b83b9cb823.9.yg:8448 {
     reverse_proxy localhost:8008
+}
+
+http://pleroma.288c82f139343fa425568bcc0181b4a2738c0979c561ae27f4e14b83b9cb823.9.yg {
+    reverse_proxy localhost:8009
+}
+
+http://pleroma.d4cd4a8973bc662e298cd6dca00c72833e532b79f94e437f42c8adbe5b14706.0.yg {
+    reverse_proxy localhost:8009
 }
 
 http:// {

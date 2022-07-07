@@ -39,7 +39,11 @@ http://pleroma.288c82f139343fa425568bcc0181b4a2738c0979c561ae27f4e14b83b9cb823.9
     reverse_proxy localhost:8009
 }
 
-http://pleroma.d4cd4a8973bc662e298cd6dca00c72833e532b79f94e437f42c8adbe5b14706.0.yg {
+pleroma.d4cd4a8973bc662e298cd6dca00c72833e532b79f94e437f42c8adbe5b14706.0.yg {
+    reverse_proxy localhost:8009
+}
+
+pleroma.288c82f139343fa425568bcc0181b4a2738c0979c561ae27f4e14b83b9cb823.9.yg {
     reverse_proxy localhost:8009
 }
 

@@ -1,0 +1,59 @@
+
+:4001 {
+    import corsify
+    reverse_proxy localhost:8008
+}
+
+:4000 {
+    import corsify
+    reverse_proxy localhost:8004
+}
+
+*.yg {
+    reverse_proxy localhost:8009
+}
+
+http:// {
+    @options {
+        method OPTIONS
+    }
+
+    @daemon_synapse {
+        header X-Intercepted-Subdomain synapse
+    }
+
+    @daemon_pleroma {
+        header X-Intercepted-Subdomain pleroma
+    }
+
+    handle @options {
+        import corsify
+        respond 204
+    }
+
+    handle @daemon_synapse {
+        reverse_proxy localhost:8008
+    }
+
+    handle @daemon_pleroma {
+        import harnessify
+        reverse_proxy localhost:8009
+    }
+
+    handle_path /harness/pleroma* {
+        import harnessify
+        reverse_proxy localhost:8009
+    }
+
+    handle_path /harness/* {
+        import corsify
+        file_server {
+            root /harness/
+        }
+    }
+
+    handle {
+        import corsify
+        reverse_proxy localhost:8001
+    }
+}

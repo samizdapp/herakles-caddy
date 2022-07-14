@@ -1,5 +1,7 @@
 # note: never use the :latest tag in a production site
 FROM caddy:latest
 
-COPY Caddyfile /etc/caddy/Caddyfile
+COPY . .
+RUN apk add jq
 
+ENTRYPOINT ["./start.sh"]

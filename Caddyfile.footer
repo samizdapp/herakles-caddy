@@ -13,7 +13,7 @@
     reverse_proxy localhost:8009
 }
 
-http:// {
+http://setup.localhost, http://setup.local, http://localhost {
     @options {
         method OPTIONS
     }

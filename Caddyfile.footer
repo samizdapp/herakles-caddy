@@ -1,16 +1,6 @@
-
-:4001 {
-    import corsify
-    reverse_proxy localhost:8008
-}
-
-:4000 {
+:4000, :4001, :4002, :4003, :4004, :4005, :4006, :4007, :4008 {
     import corsify
     reverse_proxy localhost:8004
-}
-
-*.yg {
-    reverse_proxy localhost:8009
 }
 
 http://setup.localhost, http://setup.local, http://localhost {
@@ -24,6 +14,13 @@ http://setup.localhost, http://setup.local, http://localhost {
 
     @daemon_pleroma {
         header X-Intercepted-Subdomain pleroma
+    }
+
+    handle /manifest.json {
+        import corsify
+        file_server {
+            root /next/
+        }
     }
 
     handle @options {
@@ -54,6 +51,8 @@ http://setup.localhost, http://setup.local, http://localhost {
 
     handle {
         import corsify
-        reverse_proxy localhost:8001
+        file_server {
+            root /next/
+        }
     }
 }

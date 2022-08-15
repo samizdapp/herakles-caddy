@@ -1,7 +1,6 @@
 {
     local_certs
     auto_https disable_redirects
-    debug
 }
 
 (corsify) {
@@ -10,6 +9,7 @@
         ?Access-Control-Allow-Credentials true
         ?Access-Control-Allow-Methods *
         ?Access-Control-Allow-Headers *
+        ?Service-Worker-Allowed /
     }
 }
 
@@ -17,5 +17,6 @@
     header {
         -Content-Security-Policy
         -X-Frame-Options
+        -X-Content-Type-Options
     }
 }

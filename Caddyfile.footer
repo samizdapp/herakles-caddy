@@ -3,6 +3,11 @@
     reverse_proxy localhost:8004
 }
 
+:5000 {
+    import harnessify
+    reverse_proxy localhost:8009
+}
+
 http://setup.localhost, http://setup.local, http://localhost {
     @options {
         method OPTIONS
@@ -12,9 +17,7 @@ http://setup.localhost, http://setup.local, http://localhost {
         header X-Intercepted-Subdomain synapse
     }
 
-    @daemon_pleroma {
-        header X-Intercepted-Subdomain pleroma
-    }
+
 
     handle /manifest.json {
         import corsify
@@ -49,10 +52,19 @@ http://setup.localhost, http://setup.local, http://localhost {
         }
     }
 
-    handle {
+    handle_path /expo/* {
+        import harnessify
+        reverse_proxy localhost:8009
+    }
+
+    handle_path /pwa* {
         import corsify
         file_server {
             root /next/
         }
+    }
+
+    @daemon_pleroma {
+        header X-Intercepted-Subdomain pleroma
     }
 }

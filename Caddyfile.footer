@@ -1,11 +1,6 @@
-:4000, :4001, :4002, :4003, :4004, :4005, :4006, :4007, :4008 {
+:4000 {
     import corsify
     reverse_proxy localhost:8004
-}
-
-:5000 {
-    import harnessify
-    reverse_proxy localhost:8009
 }
 
 http://setup.localhost, http://setup.local, http://localhost {

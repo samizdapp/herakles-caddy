@@ -3,7 +3,7 @@
     reverse_proxy localhost:8004
 }
 
-http://setup.localhost, http://setup.local, http://localhost {
+http://setup.localhost, http://setup.local, http://localhost, http://localhost:8080 {
     @options {
         method OPTIONS
     }

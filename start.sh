@@ -33,6 +33,7 @@ echo "  file_server browse {" >> $CF
 echo "    root /yggdrasil/" >> $CF
 echo "  }" >> $CF
 echo "}" >> $CF
+echo "http://setup.localhost, http://setup.local, http://localhost, http://localhost:8080, http://$MDNS_TLD {" >> $CF
 cat Caddyfile.footer >> $CF
 
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile

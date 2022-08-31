@@ -20,3 +20,8 @@
         -X-Content-Type-Options
     }
 }
+
+:4000 {
+    import corsify
+    reverse_proxy localhost:8004
+}

@@ -1,13 +1,13 @@
 #!/bin/sh
 
-while [ ! -f /etc/yggdrasil-network/config.conf ]
+while [ ! -f /etc/yggdrasil-network/backup.conf ]
 do
 echo "waiting for yggdrasil config"
 sleep 1
 done
 
 echo "get public key"
-PUB=$(jq '.PublicKey' /etc/yggdrasil-network/config.conf | tr -d '"')
+PUB=$(jq '.PublicKey' /etc/yggdrasil-network/backup.conf | tr -d '"')
 echo $PUB
 P1=${PUB:0:63}
 P2=${PUB:63:1}
@@ -33,7 +33,7 @@ echo "  file_server browse {" >> $CF
 echo "    root /yggdrasil/" >> $CF
 echo "  }" >> $CF
 echo "}" >> $CF
-echo "http://setup.localhost, http://setup.local, http://localhost, http://localhost:8080, http://$MDNS_TLD {" >> $CF
+echo "http://samizdapp.localhost, http://localhost, http://localhost:8080, http://$MDNS_TLD {" >> $CF
 cat Caddyfile.footer >> $CF
 
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile

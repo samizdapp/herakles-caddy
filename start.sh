@@ -29,7 +29,7 @@ echo "    root /data/caddy/" >> $CF
 echo "  }" >> $CF
 echo "}" >> $CF
 echo "$YGGDRASIL {" >> $CF
-echo "  file_server browse {" >> $CF
+echo "  file_server {" >> $CF
 echo "    root /yggdrasil/" >> $CF
 echo "  }" >> $CF
 echo "}" >> $CF

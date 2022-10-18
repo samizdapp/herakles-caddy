@@ -6,8 +6,6 @@
         header X-Intercepted-Subdomain synapse
     }
 
-
-
     handle /manifest.json {
         import corsify
         file_server {
@@ -20,37 +18,16 @@
         respond 204
     }
 
-    handle @daemon_synapse {
-        reverse_proxy localhost:8008
-    }
-
-    handle @daemon_pleroma {
-        import harnessify
-        reverse_proxy localhost:8009
-    }
-
-    handle_path /harness/pleroma* {
-        import harnessify
-        reverse_proxy localhost:8009
-    }
-
-    handle_path /harness/* {
-        import corsify
-        file_server {
-            root /harness/
-        }
-    }
-
-    handle_path /expo/* {
-        import harnessify
-        reverse_proxy localhost:8009
-    }
-
     handle_path /pwa* {
         import corsify
         file_server {
             root /next/
         }
+    }
+
+    handle @daemon_pleroma {
+        import harnessify
+        reverse_proxy localhost:8009
     }
 
     @daemon_pleroma {

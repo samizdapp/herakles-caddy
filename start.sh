@@ -19,6 +19,7 @@ export YGGDRASIL="yggdrasil.$P1.$P2.yg"
 
 CF=/etc/caddy/Caddyfile
 
+
 cat Caddyfile.header > $CF
 echo "$PLEROMA {" >> $CF
 echo "  reverse_proxy localhost:8009" >> $CF
@@ -33,7 +34,7 @@ echo "  file_server {" >> $CF
 echo "    root /yggdrasil/" >> $CF
 echo "  }" >> $CF
 echo "}" >> $CF
-echo "http://samizdapp.localhost, http://localhost, http://localhost:8080, http://$MDNS_TLD {" >> $CF
+echo "http://samizdapp.localhost, http://localhost, http://$MDNS_TLD {" >> $CF
 cat Caddyfile.footer >> $CF
 
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile

@@ -33,4 +33,8 @@
     @daemon_pleroma {
         header X-Intercepted-Subdomain pleroma
     }
+
+    handle / {
+        redir / /pwa
+    }
 }

@@ -20,8 +20,13 @@
 
     handle_path /pwa* {
         import corsify
-        file_server {
-            root /next/
+        route {
+            root * /next/
+            file_server {
+                pass_thru
+            }
+            rewrite * /
+            file_server
         }
     }
 

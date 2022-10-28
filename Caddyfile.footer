@@ -18,7 +18,11 @@
         respond 204
     }
 
-    handle_path /pwa* {
+    handle /smz/api/status* {
+        reverse_proxy localhost:3333
+    }
+
+    handle_path /smz* {
         import corsify
         route {
             root * /next/
@@ -40,10 +44,6 @@
     }
 
     handle / {
-        redir / /pwa
-    }
-
-    handle /api/status* {
-        reverse_proxy localhost:3333
+        redir / /smz
     }
 }

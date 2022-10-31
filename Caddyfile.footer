@@ -22,6 +22,10 @@
         reverse_proxy localhost:3333
     }
 
+    handle_path /smz/wifi* {
+        reverse_proxy 192.168.42.1:8000
+    }
+
     handle_path /smz* {
         import corsify
         route {

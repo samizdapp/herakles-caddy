@@ -26,7 +26,7 @@
         reverse_proxy 192.168.42.1:8000
     }
 
-    handle_path /smz* {
+    handle_path /smz/pwa* {
         import corsify
         route {
             root * /next/
@@ -48,6 +48,6 @@
     }
 
     handle / {
-        redir / /smz
+        redir / /smz/pwa
     }
 }

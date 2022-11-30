@@ -18,8 +18,12 @@
         respond 204
     }
 
+    handle /smz/api/app* {
+        reverse_proxy localhost:3412
+    }
+
     handle /smz/api/status* {
-        reverse_proxy localhost:3333
+        reverse_proxy localhost:3411
     }
 
     handle_path /smz/wifi* {
